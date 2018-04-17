@@ -1,0 +1,13 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Spotify Playlists</h2>
+            <button class="btn btn-default" (click)="getSpotifyPlaylists()">Show playlists</button>
+            <ul *ngIf="spotifyPlaylists">
+                <li *ngFor='let playlist of spotifyPlaylists'>
+                    <button class="btn btn-default" (click)="getPlaylistTracks(playlist)">Show {{playlist.id}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
