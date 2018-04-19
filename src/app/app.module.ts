@@ -1,38 +1,33 @@
-import { SpotifyService } from './Components/spotify/spotify.service';
-// import { environment } from './../environments/environment.prod';
-import { HttpClientModule } from '@angular/common/http';
-import { ApiService } from './services/api.service';
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule} from '@angular/platform-browser';
 import { NgModule, Component } from '@angular/core';
-import  {RouterModule, Routes } from '@angular/router'
-import  {environment} from '../environments/environment';
-import { AppComponent } from './app.component';
-// firebase stuff
+import { RouterModule, Routes } from '@angular/router';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import {SpotifyService} from './Components/platform/spotify.service';
+import {ApiService} from './services/api.service';
+import {environment} from '../config/environment.dev.js';
+import {AppComponent} from './app.component';
+import {HeaderComponent} from './header/header.component';
+import {LoginComponent} from './Components/login/login.component';
+import {PlatformComponent} from './Components/platform/platform.component';
 import * as firebase from 'firebase';
 import {AngularFireModule} from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFireAuthModule } from 'angularfire2/auth';
-import { SpotifyComponent } from './Components/spotify/spotify.component';
-import { AppleComponent } from './Components/apple/apple.component';
-import { YoutubeComponent } from './Components/youtube/youtube.component';
-import { AuthService } from './services/auth.service';
-import { FormsModule } from '@angular/forms';
-// routes
+import {AngularFireDatabaseModule} from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
+import {AuthService} from './services/auth.service';
 
 const appRoutes: Routes = [
-  {path: '',component: AppComponent}  
+	{path: '', component: AppComponent}
+];
 
-]
-// firebase.initializeApp(environment.firebase);
-
-@NgModule({
-  declarations: [
+const declarations = [
     AppComponent,
-    SpotifyComponent,
-    AppleComponent,
-    YoutubeComponent
-  ],
-  imports: [
+    HeaderComponent,
+    LoginComponent,
+    PlatformComponent
+];
+
+const imports = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
@@ -40,8 +35,20 @@ const appRoutes: Routes = [
     AngularFireModule.initializeApp(environment.firebase, 'musicshift'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-  ],
-  providers: [ApiService,AuthService,SpotifyService],
-  bootstrap: [AppComponent]
+];
+
+const providers = [
+    ApiService,
+    AuthService,
+    SpotifyService
+];
+
+const bootstrap = [AppComponent];
+
+@NgModule({
+	declarations,
+	imports,
+	providers,
+	bootstrap
 })
 export class AppModule { }

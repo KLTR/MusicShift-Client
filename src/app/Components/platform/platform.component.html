@@ -1,0 +1,37 @@
+<div *ngIf="!platformPlaylists">
+    <h2>Pick A Platform</h2>
+    <ul class="pick-platform">
+        <li *ngFor="let platfrom of ['Spotify', 'Apple Music', 'YouTube']">
+            <a href="#!" (click)="pickSource(platfrom)">{{platfrom}}</a>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="(platformPlaylists && !playlistTracks)">
+    <h2>Pick A Playlist</h2>
+    <ul class="pick-playlist">
+        <li *ngFor="let playlist of platformPlaylists">
+            <div class="info">
+                <i>{{playlist.tracks.total}}</i>
+                <i *ngIf="playlist.collaborative === true" data-hint="Collaborative Playlist">C</i>
+                <i *ngIf="playlist.public === true" data-hint="Public Playlist">P</i>
+            </div>
+            <span class="name">
+                {{playlist.name}}
+                <span class="by">by <a href="https://open.spotify.com/user/{{playlist.owner.id}}" target="_blank">{{playlist.owner.id}}</a></span>
+            </span>
+            <a href="#!" (click)="getPlaylistTracks(playlist)">Pick →</a>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="(!platformPlaylists && playlistTracks)">
+    <h2>Choose Tracks</h2>
+    <a href="#!" (click)="getPlaylistTracks(playlist)">Pick All →</a>
+    <ul class="pick-tracks">
+        <li *ngFor="let track of playlistTracks">
+            <span class="name">{{track.track.name}}</span>
+            <a href="#!" (click)="getPlaylistTracks(playlist)">Pick →</a>
+        </li>
+    </ul>
+</div>

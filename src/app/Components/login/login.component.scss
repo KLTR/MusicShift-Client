@@ -1,0 +1,85 @@
+@import '~colors.scss';
+
+.login {
+    background-color: #222222d9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+    form {
+        background-color: #fff;
+        width: 270px;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 1em 2em;
+        border-radius: 3px;
+        box-shadow: 2px 0 15px rgba(0, 0, 0, 0.25);
+        overflow: hidden;
+
+        h3 {
+            margin-bottom: 45px;
+            font-size: 1.5rem;
+            font-weight: 500;
+            line-height: 1em;
+            text-transform: uppercase;
+            color: $light-red;
+            letter-spacing: 0.1rem;
+        }
+
+        input {
+            background-color: #0000;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            width: 100%;
+            border-bottom: 1px solid #ccc;
+            padding: 6px 20px 6px 0;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #808080;
+            letter-spacing: 0.1rem;
+            transition: border-color 0.2s ease-in-out;
+        }
+
+        button {
+            background-color: $light-red;
+            border-radius: 3px;
+            padding: 10px 35px;
+            text-align: center;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.1rem;
+            transition: background-color 0.2s ease-in-out;
+
+            &:not(:disabled):hover {
+                background-color: #e14641;
+            }
+        }
+
+        .signup {
+            color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            padding: 10px 30px;
+            text-transform: uppercase;
+            line-height: 1em;
+            letter-spacing: 0.2rem;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+
+            &:hover {
+                color: #222222d9;
+                background-color: #ccc;
+            }
+        }
+
+        & > div {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+}
