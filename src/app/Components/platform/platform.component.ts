@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {ApiService} from './../../services/api.service';
 import {AuthService} from './../../services/auth.service';
 import {SpotifyService} from './spotify.service';
 import Popup from '../../shared/popup';
-import { getPlaylists, getTracks } from './stubData';
+import {getPlaylists, getTracks} from './stubData';
 
 @Component({
-	selector: 'app-platform',
-	templateUrl: './platform.component.html',
-	styleUrls: ['./platform.component.scss']
+    selector: 'app-platform',
+    templateUrl: './platform.component.html',
+    styleUrls: ['./platform.component.scss']
 })
 export class PlatformComponent implements OnInit {
     platformPlaylists = null;
@@ -19,28 +19,32 @@ export class PlatformComponent implements OnInit {
     user;
     socket = io.connect('localhost:8080');
 
-	constructor(
-		public spotifyService: SpotifyService,
-		private router: Router,
-		private http: HttpClient,
-		private authService: AuthService
-	) {
-		this.user = this.authService.getUser();
+    constructor(
+        public spotifyService: SpotifyService,
+        private router: Router,
+        private http: HttpClient,
+        private authService: AuthService
+    ) {
+        this.user = this.authService.getUser();
 
-		//When server finish adding playlists to Db call this funciton.
-		this.socket.on('spotify_playlists', (data) => {
-			this.spotifyService.getPlaylistsFromDb(this.user.uid).subscribe(
-				spotify_playlists => { this.platformPlaylists = spotify_playlists; },
-				err => { console.error(err); },
-				() => console.log('playlists ready')
-			);
+        //When server finish adding playlists to Db call this funciton.
+        this.socket.on('spotify_playlists', (data) => {
+            this.spotifyService.getPlaylistsFromDb(this.user.uid).subscribe(
+                (spotify_playlists) => {
+                    this.platformPlaylists = spotify_playlists;
+                },
+                (err) => {
+                    console.error(err);
+                },
+                () => console.log('playlists ready')
+            );
         });
 
-        this.platformPlaylists = getPlaylists();
+        // this.platformPlaylists = getPlaylists();
         // this.playlistTracks = getTracks();
     }
 
-	ngOnInit() {
+    ngOnInit() {
         this.getSpotifyPlaylists();
     }
 
@@ -50,7 +54,7 @@ export class PlatformComponent implements OnInit {
 
     authorize(platformName) {
         this.spotifyService.getPlaylistsFromSptoify().subscribe(data => {
-			const url = `${data}${this.user.uid}`;
+            const url = `${data}${this.user.uid}`;
 
             const options = {
                 url,
@@ -58,14 +62,14 @@ export class PlatformComponent implements OnInit {
             };
 
             Popup(options);
-		});
+        });
     }
 
     addUserToSocket() {
         this.socket.emit('auth', this.user.uid);
     }
 
-	getSpotifyPlaylists() {
+    getSpotifyPlaylists() {
         this.addUserToSocket();
     }
 

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
     email: string = '';
@@ -15,18 +15,18 @@ export class LoginComponent {
     signup() {
         if (!(this.email && this.password)) { return; }
 
-		this.authService.signup(this.email, this.password);
-		this.resetFields();
-	}
+        this.authService.signup(this.email, this.password);
+        this.resetFields();
+    }
 
-	login() {
+    login() {
         if (!(this.email && this.password)) { return; }
 
-		this.authService.login(this.email, this.password);
+        this.authService.login(this.email, this.password);
         this.resetFields();
-	}
+    }
 
-	resetFields() {
-		this.email = this.password = '';
-	}
+    resetFields() {
+        this.email = this.password = '';
+    }
 }
