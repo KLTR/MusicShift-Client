@@ -19,13 +19,19 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "../node_modules/normalize.css/normalize.css",
+        "./common.scss"
       ],
+      "stylePreprocessorOptions": {
+        "includePaths": [
+            "./colors.scss"
+        ]
+      },
       "scripts": [],
-      "environmentSource": "environments/environment.ts",
+      "environmentSource": "config/environment.js",
       "environments": {
-        "dev": "environments/environment.ts",
-        "prod": "environments/environment.prod.ts"
+        "dev": "config/environment.dev.js",
+        "prod": "config/environment.prod.js"
       }
     }
   ],
@@ -54,7 +60,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+    }
   }
 }

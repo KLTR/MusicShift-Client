@@ -1,0 +1,23 @@
+<section class="login">
+    <form>
+        <h3>LOGIN</h3>
+
+        <input type="email"
+            name="email"
+            placeholder="Email"
+            [(ngModel)]="email"
+            required>
+
+        <input type="password"
+            name="password"
+            placeholder="Password"
+            [(ngModel)]="password"
+            required>
+
+        <button (click)="login()" [disabled]="!email || !password">Login</button>
+        <div>
+            <a href="#!" (click)="signup()">Signup</a>
+            <a href="/">Forgot password?</a>
+        </div>
+    </form>
+</section>

@@ -1,9 +1,9 @@
-import { Playlist } from "./playlist";
+import { Playlist } from './playlist';
 
-export class User{
-    public name: string;
-    public email: string;
-    public uid: string;
-    public img: string;
-    public playLists: [any]
+export class User {
+        public uid: string;
+        public name: string;
+        public email: string;
+        public img: string;
+        public playLists: [any];
 }

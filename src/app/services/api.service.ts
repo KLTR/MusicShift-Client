@@ -8,16 +8,15 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json'});
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
 
 @Injectable()
 export class ApiService {
-  user: User;
-  playlists: [Playlist];
+    user: User;
+    playlists: [Playlist];
 
-  constructor(private http: HttpClient)
-     { }
+    constructor(private http: HttpClient) { }
 
 
 }
